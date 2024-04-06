@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/13831d0b361c4a6aa1178aa3cf7e7ef5/artifacts
+end_time: 1711445791324
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 13831d0b361c4a6aa1178aa3cf7e7ef5
+run_name: legendary-stag-274
+run_uuid: 13831d0b361c4a6aa1178aa3cf7e7ef5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711445785874
+status: 3
+tags: []
+user_id: filippo

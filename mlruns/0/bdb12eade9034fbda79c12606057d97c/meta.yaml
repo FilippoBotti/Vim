@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/bdb12eade9034fbda79c12606057d97c/artifacts
+end_time: 1711446936161
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: bdb12eade9034fbda79c12606057d97c
+run_name: merciful-goose-956
+run_uuid: bdb12eade9034fbda79c12606057d97c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711446932216
+status: 3
+tags: []
+user_id: filippo

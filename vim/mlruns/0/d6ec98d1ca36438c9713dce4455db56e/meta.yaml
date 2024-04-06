@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/d6ec98d1ca36438c9713dce4455db56e/artifacts
+end_time: 1710965302334
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d6ec98d1ca36438c9713dce4455db56e
+run_name: beautiful-perch-160
+run_uuid: d6ec98d1ca36438c9713dce4455db56e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710965299541
+status: 3
+tags: []
+user_id: filippo

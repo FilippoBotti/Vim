@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/8a0ad5a6a0154750a055d0fc062dbf85/artifacts
+end_time: 1711101161977
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8a0ad5a6a0154750a055d0fc062dbf85
+run_name: big-fish-580
+run_uuid: 8a0ad5a6a0154750a055d0fc062dbf85
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711101157794
+status: 3
+tags: []
+user_id: filippo

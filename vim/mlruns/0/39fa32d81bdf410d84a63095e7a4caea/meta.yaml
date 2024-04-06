@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/39fa32d81bdf410d84a63095e7a4caea/artifacts
+end_time: 1710965053921
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 39fa32d81bdf410d84a63095e7a4caea
+run_name: delightful-auk-895
+run_uuid: 39fa32d81bdf410d84a63095e7a4caea
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710965053738
+status: 3
+tags: []
+user_id: filippo

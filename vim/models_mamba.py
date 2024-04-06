@@ -24,6 +24,8 @@ from mamba_ssm.utils.hf import load_config_hf, load_state_dict_hf
 from rope import *
 import random
 
+from torchvision.utils import save_image
+
 try:
     from mamba_ssm.ops.triton.layernorm import RMSNorm, layer_norm_fn, rms_norm_fn
 except ImportError:
@@ -48,7 +50,6 @@ class PatchEmbed(nn.Module):
         self.grid_size = ((img_size[0] - patch_size[0]) // stride + 1, (img_size[1] - patch_size[1]) // stride + 1)
         self.num_patches = self.grid_size[0] * self.grid_size[1]
         self.flatten = flatten
-
         self.proj = nn.Conv2d(in_chans, embed_dim, kernel_size=patch_size, stride=stride)
         self.norm = norm_layer(embed_dim) if norm_layer else nn.Identity()
 
@@ -61,6 +62,19 @@ class PatchEmbed(nn.Module):
             x = x.flatten(2).transpose(1, 2)  # BCHW -> BNC
         x = self.norm(x)
         return x
+    
+    def unpatchify(self, x):
+        """
+        x: (N, L, patch_size**2 *3)
+        imgs: (N, 3, H, W)
+        """
+        p = self.patch_size[0]
+        h = w = int(x.shape[1]**.5)
+        assert h * w == x.shape[1]
+        x = x.reshape(shape=(x.shape[0], h, w, p, p, 3))
+        x = torch.einsum('nhwpqc->nchpwq', x)
+        imgs = x.reshape(shape=(x.shape[0], 3, h * p, h * p))
+        return imgs
     
 
 class Block(nn.Module):
@@ -382,8 +396,8 @@ class VisionMamba(nn.Module):
         # with slight modifications to add the dist_token
         x = self.patch_embed(x)
         B, M, _ = x.shape
-
         if self.if_cls_token:
+            print("Here")
             if self.use_double_cls_token:
                 cls_token_head = self.cls_token_head.expand(B, -1, -1)
                 cls_token_tail = self.cls_token_tail.expand(B, -1, -1)
@@ -416,7 +430,7 @@ class VisionMamba(nn.Module):
             #             )
             x = x + self.pos_embed
             x = self.pos_drop(x)
-
+            
         if if_random_token_rank:
 
             # 生成随机 shuffle 索引
@@ -458,7 +472,6 @@ class VisionMamba(nn.Module):
         hidden_states = x
         if not self.if_bidirectional:
             for layer in self.layers:
-
                 if if_flip_img_sequences and self.if_rope:
                     hidden_states = hidden_states.flip([1])
                     if residual is not None:
@@ -513,7 +526,6 @@ class VisionMamba(nn.Module):
                 prenorm=False,
                 residual_in_fp32=self.residual_in_fp32,
             )
-
         # return only cls token if it exists
         if self.if_cls_token:
             if self.use_double_cls_token:
@@ -575,8 +587,9 @@ def vim_tiny_patch16_stride8_224_bimambav2_final_pool_mean_abs_pos_embed_with_mi
 
 @register_model
 def vim_small_patch16_224_bimambav2_final_pool_mean_abs_pos_embed_with_midclstok_div2(pretrained=False, **kwargs):
+    #embed_dim from 384 to 768, changed cls_token to false
     model = VisionMamba(
-        patch_size=16, embed_dim=384, depth=24, rms_norm=True, residual_in_fp32=True, fused_add_norm=True, final_pool_type='mean', if_abs_pos_embed=True, if_rope=False, if_rope_residual=False, bimamba_type="v2", if_cls_token=True, if_devide_out=True, use_middle_cls_token=True, **kwargs)
+        patch_size=16, embed_dim=384, depth=24, rms_norm=True, residual_in_fp32=True, fused_add_norm=True, final_pool_type='mean', if_abs_pos_embed=False, if_rope=False, if_rope_residual=False, bimamba_type="v2", if_cls_token=False, if_devide_out=True, use_middle_cls_token=False, **kwargs)
     model.default_cfg = _cfg()
     if pretrained:
         checkpoint = torch.hub.load_state_dict_from_url(
@@ -598,3 +611,4 @@ def vim_small_patch16_stride8_224_bimambav2_final_pool_mean_abs_pos_embed_with_m
         )
         model.load_state_dict(checkpoint["model"])
     return model
+

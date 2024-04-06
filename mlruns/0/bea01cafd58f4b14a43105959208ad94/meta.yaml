@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/bea01cafd58f4b14a43105959208ad94/artifacts
+end_time: 1711449283491
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: bea01cafd58f4b14a43105959208ad94
+run_name: traveling-fly-942
+run_uuid: bea01cafd58f4b14a43105959208ad94
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711449278462
+status: 3
+tags: []
+user_id: filippo

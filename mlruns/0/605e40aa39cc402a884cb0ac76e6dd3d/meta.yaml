@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/605e40aa39cc402a884cb0ac76e6dd3d/artifacts
+end_time: 1711445748661
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 605e40aa39cc402a884cb0ac76e6dd3d
+run_name: rambunctious-owl-224
+run_uuid: 605e40aa39cc402a884cb0ac76e6dd3d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711445743399
+status: 3
+tags: []
+user_id: filippo

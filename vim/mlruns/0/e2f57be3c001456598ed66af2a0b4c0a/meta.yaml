@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/e2f57be3c001456598ed66af2a0b4c0a/artifacts
+end_time: 1710967054930
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e2f57be3c001456598ed66af2a0b4c0a
+run_name: dapper-cod-456
+run_uuid: e2f57be3c001456598ed66af2a0b4c0a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710967052124
+status: 3
+tags: []
+user_id: filippo

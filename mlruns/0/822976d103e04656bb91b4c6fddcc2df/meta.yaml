@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/822976d103e04656bb91b4c6fddcc2df/artifacts
+end_time: 1711285112791
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 822976d103e04656bb91b4c6fddcc2df
+run_name: secretive-crane-126
+run_uuid: 822976d103e04656bb91b4c6fddcc2df
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711285110466
+status: 3
+tags: []
+user_id: filippo

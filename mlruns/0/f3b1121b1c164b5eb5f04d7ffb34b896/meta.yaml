@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/f3b1121b1c164b5eb5f04d7ffb34b896/artifacts
+end_time: 1711100592795
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f3b1121b1c164b5eb5f04d7ffb34b896
+run_name: inquisitive-moth-305
+run_uuid: f3b1121b1c164b5eb5f04d7ffb34b896
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711100591358
+status: 3
+tags: []
+user_id: filippo

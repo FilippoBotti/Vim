@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/5801a1ae51c947b4b1ae974ddf79c52e/artifacts
+end_time: 1711448722500
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 5801a1ae51c947b4b1ae974ddf79c52e
+run_name: abundant-sloth-761
+run_uuid: 5801a1ae51c947b4b1ae974ddf79c52e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711448718493
+status: 3
+tags: []
+user_id: filippo

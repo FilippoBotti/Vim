@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/ecb81fbec5854e70ac07dbe041d3b4f0/artifacts
+end_time: 1711100998092
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: ecb81fbec5854e70ac07dbe041d3b4f0
+run_name: sophisticated-ape-82
+run_uuid: ecb81fbec5854e70ac07dbe041d3b4f0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711100995913
+status: 3
+tags: []
+user_id: filippo

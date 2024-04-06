@@ -9,7 +9,7 @@ from einops import rearrange, repeat
 from causal_conv1d import causal_conv1d_fn
 import causal_conv1d_cuda
 import selective_scan_cuda
-
+from threading import current_thread
 
 class SelectiveScanFn(torch.autograd.Function):
 
@@ -181,11 +181,14 @@ class MambaInnerFnNoOutProj(torch.autograd.Function):
         x_dbl = F.linear(rearrange(conv1d_out, 'b d l -> (b l) d'), x_proj_weight)  # (bl d)
         delta = rearrange(delta_proj_weight @ x_dbl[:, :delta_rank].t(), "d (b l) -> b d l", l = L)
         ctx.is_variable_B = B is None
-        ctx.is_variable_C = C is None
+        #FIX: pass true to avoid error in backward
+        ctx.is_variable_C = True
         ctx.B_proj_bias_is_None = B_proj_bias is None
         ctx.C_proj_bias_is_None = C_proj_bias is None
         if B is None:  # variable B
+            #FIX: dimension * 2 not needed
             B = x_dbl[:, delta_rank:delta_rank + d_state]  # (bl dstate)
+            
             if B_proj_bias is not None:
                 B = B + B_proj_bias.to(dtype=B.dtype)
             if not A.is_complex():
@@ -206,10 +209,17 @@ class MambaInnerFnNoOutProj(torch.autograd.Function):
             else:
                 C = rearrange(C, "(b l) (dstate two) -> b 1 dstate (l two)", l=L, two=2).contiguous()
         else:
+            if not A.is_complex():
+                # C = rearrange(C, "(b l) dstate -> b dstate l", l=L).contiguous()
+                C = rearrange(C, "(b l) dstate -> b 1 dstate l", l=L).contiguous()
+            else:
+                C = rearrange(C, "(b l) (dstate two) -> b 1 dstate (l two)", l=L, two=2).contiguous()
             if C.stride(-1) != 1:
                 C = C.contiguous()
+            
         if D is not None:
             D = D.contiguous()
+            
         out, scan_intermediates, out_z = selective_scan_cuda.fwd(
             conv1d_out, delta, A, B, C, D, z, delta_bias, delta_softplus
         )

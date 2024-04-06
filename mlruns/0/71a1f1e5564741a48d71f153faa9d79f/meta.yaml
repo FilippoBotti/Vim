@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/71a1f1e5564741a48d71f153faa9d79f/artifacts
+end_time: 1711453919090
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 71a1f1e5564741a48d71f153faa9d79f
+run_name: smiling-grouse-664
+run_uuid: 71a1f1e5564741a48d71f153faa9d79f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711453915090
+status: 3
+tags: []
+user_id: filippo

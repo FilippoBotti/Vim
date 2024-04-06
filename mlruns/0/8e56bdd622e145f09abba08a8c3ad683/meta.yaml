@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/8e56bdd622e145f09abba08a8c3ad683/artifacts
+end_time: 1711283803590
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8e56bdd622e145f09abba08a8c3ad683
+run_name: masked-deer-641
+run_uuid: 8e56bdd622e145f09abba08a8c3ad683
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711283802739
+status: 3
+tags: []
+user_id: filippo

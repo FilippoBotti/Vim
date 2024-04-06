@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/f0ba54247dc74a85a24c908b99877897/artifacts
+end_time: 1711448455190
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f0ba54247dc74a85a24c908b99877897
+run_name: charming-ape-529
+run_uuid: f0ba54247dc74a85a24c908b99877897
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711448450916
+status: 3
+tags: []
+user_id: filippo

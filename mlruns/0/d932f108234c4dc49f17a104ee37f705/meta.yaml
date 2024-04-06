@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/d932f108234c4dc49f17a104ee37f705/artifacts
+end_time: 1711446729066
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d932f108234c4dc49f17a104ee37f705
+run_name: big-lark-435
+run_uuid: d932f108234c4dc49f17a104ee37f705
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711446727031
+status: 3
+tags: []
+user_id: filippo

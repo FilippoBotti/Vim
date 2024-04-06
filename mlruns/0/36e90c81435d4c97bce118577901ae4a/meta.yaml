@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/36e90c81435d4c97bce118577901ae4a/artifacts
+end_time: 1711281629026
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 36e90c81435d4c97bce118577901ae4a
+run_name: skittish-frog-765
+run_uuid: 36e90c81435d4c97bce118577901ae4a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711281625100
+status: 3
+tags: []
+user_id: filippo

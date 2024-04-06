@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/d5d45f16d6ec4f64a9673993b7a359f0/artifacts
+end_time: null
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d5d45f16d6ec4f64a9673993b7a359f0
+run_name: cross-vim_e2s
+run_uuid: d5d45f16d6ec4f64a9673993b7a359f0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711481742304
+status: 1
+tags: []
+user_id: filippo

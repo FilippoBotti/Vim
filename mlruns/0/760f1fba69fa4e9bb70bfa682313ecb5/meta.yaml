@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/760f1fba69fa4e9bb70bfa682313ecb5/artifacts
+end_time: 1711449060145
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 760f1fba69fa4e9bb70bfa682313ecb5
+run_name: brawny-chimp-296
+run_uuid: 760f1fba69fa4e9bb70bfa682313ecb5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711449054841
+status: 3
+tags: []
+user_id: filippo

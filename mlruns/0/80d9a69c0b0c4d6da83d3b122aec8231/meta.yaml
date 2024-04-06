@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/80d9a69c0b0c4d6da83d3b122aec8231/artifacts
+end_time: 1711448599411
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 80d9a69c0b0c4d6da83d3b122aec8231
+run_name: serious-yak-518
+run_uuid: 80d9a69c0b0c4d6da83d3b122aec8231
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711448595381
+status: 3
+tags: []
+user_id: filippo

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/7afc9eced7914aa58f767c61da800bf0/artifacts
+end_time: 1711448676476
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7afc9eced7914aa58f767c61da800bf0
+run_name: abrasive-sponge-857
+run_uuid: 7afc9eced7914aa58f767c61da800bf0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711448672381
+status: 3
+tags: []
+user_id: filippo

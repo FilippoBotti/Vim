@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/8457fcc021d04863aa203e2f3ade887b/artifacts
+end_time: 1711464343599
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8457fcc021d04863aa203e2f3ade887b
+run_name: nosy-tern-143
+run_uuid: 8457fcc021d04863aa203e2f3ade887b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711464343534
+status: 3
+tags: []
+user_id: filippo

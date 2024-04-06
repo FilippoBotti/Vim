@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/ed3bd64a68a842c780b5d8ddd3ee7984/artifacts
+end_time: 1711282032408
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: ed3bd64a68a842c780b5d8ddd3ee7984
+run_name: wistful-stoat-332
+run_uuid: ed3bd64a68a842c780b5d8ddd3ee7984
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711282027542
+status: 3
+tags: []
+user_id: filippo

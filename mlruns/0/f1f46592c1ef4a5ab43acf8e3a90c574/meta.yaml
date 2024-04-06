@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/f1f46592c1ef4a5ab43acf8e3a90c574/artifacts
+end_time: 1711446147235
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f1f46592c1ef4a5ab43acf8e3a90c574
+run_name: indecisive-smelt-172
+run_uuid: f1f46592c1ef4a5ab43acf8e3a90c574
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711446143757
+status: 3
+tags: []
+user_id: filippo

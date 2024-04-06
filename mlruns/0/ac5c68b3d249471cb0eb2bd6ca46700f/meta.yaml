@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/ac5c68b3d249471cb0eb2bd6ca46700f/artifacts
+end_time: 1711285090004
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: ac5c68b3d249471cb0eb2bd6ca46700f
+run_name: thoughtful-crane-234
+run_uuid: ac5c68b3d249471cb0eb2bd6ca46700f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711285087880
+status: 3
+tags: []
+user_id: filippo

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/0d779072180042e4be0098bc09d709e5/artifacts
+end_time: 1711449237683
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 0d779072180042e4be0098bc09d709e5
+run_name: learned-hound-2
+run_uuid: 0d779072180042e4be0098bc09d709e5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711449235458
+status: 3
+tags: []
+user_id: filippo

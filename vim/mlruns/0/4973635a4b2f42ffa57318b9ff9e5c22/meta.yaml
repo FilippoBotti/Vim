@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/4973635a4b2f42ffa57318b9ff9e5c22/artifacts
+end_time: 1710970364073
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4973635a4b2f42ffa57318b9ff9e5c22
+run_name: monumental-loon-425
+run_uuid: 4973635a4b2f42ffa57318b9ff9e5c22
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710970364032
+status: 3
+tags: []
+user_id: filippo

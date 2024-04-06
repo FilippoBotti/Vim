@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/6eca440cf1f543bf831abbd5d62af36b/artifacts
+end_time: 1711463745223
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6eca440cf1f543bf831abbd5d62af36b
+run_name: redolent-pig-490
+run_uuid: 6eca440cf1f543bf831abbd5d62af36b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711463741063
+status: 3
+tags: []
+user_id: filippo

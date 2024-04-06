@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/9b4d2d99bd5d4e6289c095d5b733a1c2/artifacts
+end_time: 1711448932410
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9b4d2d99bd5d4e6289c095d5b733a1c2
+run_name: big-finch-436
+run_uuid: 9b4d2d99bd5d4e6289c095d5b733a1c2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711448928275
+status: 3
+tags: []
+user_id: filippo

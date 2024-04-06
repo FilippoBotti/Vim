@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/d395806e80ca40d8b726853c303bf034/artifacts
+end_time: 1711448396801
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d395806e80ca40d8b726853c303bf034
+run_name: thundering-slug-29
+run_uuid: d395806e80ca40d8b726853c303bf034
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711448392789
+status: 3
+tags: []
+user_id: filippo

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/72c53c140270439cb0f8971f3dc5812e/artifacts
+end_time: 1711463822713
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 72c53c140270439cb0f8971f3dc5812e
+run_name: traveling-koi-389
+run_uuid: 72c53c140270439cb0f8971f3dc5812e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711463819167
+status: 3
+tags: []
+user_id: filippo

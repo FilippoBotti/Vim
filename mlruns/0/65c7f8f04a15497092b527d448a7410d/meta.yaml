@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/65c7f8f04a15497092b527d448a7410d/artifacts
+end_time: 1711446162382
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 65c7f8f04a15497092b527d448a7410d
+run_name: omniscient-gnat-515
+run_uuid: 65c7f8f04a15497092b527d448a7410d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711446156397
+status: 3
+tags: []
+user_id: filippo

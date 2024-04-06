@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/e778b90c73f94699b91fda7b33ae808c/artifacts
+end_time: 1710965946803
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e778b90c73f94699b91fda7b33ae808c
+run_name: overjoyed-whale-65
+run_uuid: e778b90c73f94699b91fda7b33ae808c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710965946618
+status: 3
+tags: []
+user_id: filippo

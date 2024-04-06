@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/9f637ef209574711b6a82ff33e85285a/artifacts
+end_time: 1711464320619
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9f637ef209574711b6a82ff33e85285a
+run_name: honorable-koi-544
+run_uuid: 9f637ef209574711b6a82ff33e85285a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711464320554
+status: 3
+tags: []
+user_id: filippo

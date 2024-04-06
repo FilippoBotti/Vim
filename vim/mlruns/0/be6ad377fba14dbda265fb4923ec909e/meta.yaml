@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/be6ad377fba14dbda265fb4923ec909e/artifacts
+end_time: 1710966262336
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: be6ad377fba14dbda265fb4923ec909e
+run_name: clean-lamb-929
+run_uuid: be6ad377fba14dbda265fb4923ec909e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710966259593
+status: 3
+tags: []
+user_id: filippo

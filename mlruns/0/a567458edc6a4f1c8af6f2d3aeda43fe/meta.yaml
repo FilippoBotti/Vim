@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/a567458edc6a4f1c8af6f2d3aeda43fe/artifacts
+end_time: 1711043666948
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a567458edc6a4f1c8af6f2d3aeda43fe
+run_name: bedecked-shrimp-277
+run_uuid: a567458edc6a4f1c8af6f2d3aeda43fe
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711043666899
+status: 3
+tags: []
+user_id: filippo

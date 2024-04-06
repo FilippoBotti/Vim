@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/7b71be6b13e14025a0fd33cf598d1074/artifacts
+end_time: 1711449405769
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7b71be6b13e14025a0fd33cf598d1074
+run_name: glamorous-gnu-78
+run_uuid: 7b71be6b13e14025a0fd33cf598d1074
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711449401009
+status: 3
+tags: []
+user_id: filippo

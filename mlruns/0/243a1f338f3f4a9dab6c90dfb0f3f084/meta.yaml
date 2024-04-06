@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/243a1f338f3f4a9dab6c90dfb0f3f084/artifacts
+end_time: 1711447196944
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 243a1f338f3f4a9dab6c90dfb0f3f084
+run_name: capricious-shad-567
+run_uuid: 243a1f338f3f4a9dab6c90dfb0f3f084
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711447192799
+status: 3
+tags: []
+user_id: filippo

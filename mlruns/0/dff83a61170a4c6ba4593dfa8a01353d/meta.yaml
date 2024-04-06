@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/dff83a61170a4c6ba4593dfa8a01353d/artifacts
+end_time: 1711281373565
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: dff83a61170a4c6ba4593dfa8a01353d
+run_name: resilient-fish-542
+run_uuid: dff83a61170a4c6ba4593dfa8a01353d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711281369602
+status: 3
+tags: []
+user_id: filippo

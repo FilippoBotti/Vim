@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/efbf1d3803b648589277dbc59f148057/artifacts
+end_time: 1711100511120
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: efbf1d3803b648589277dbc59f148057
+run_name: bouncy-hare-507
+run_uuid: efbf1d3803b648589277dbc59f148057
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711100509658
+status: 3
+tags: []
+user_id: filippo

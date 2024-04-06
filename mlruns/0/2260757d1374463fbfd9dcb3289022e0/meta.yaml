@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/2260757d1374463fbfd9dcb3289022e0/artifacts
+end_time: 1711284640916
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2260757d1374463fbfd9dcb3289022e0
+run_name: valuable-vole-76
+run_uuid: 2260757d1374463fbfd9dcb3289022e0
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711284635160
+status: 3
+tags: []
+user_id: filippo

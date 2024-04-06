@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/74c65de399d14063ae9558489944de7a/artifacts
+end_time: 1711463882755
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 74c65de399d14063ae9558489944de7a
+run_name: abrasive-wasp-511
+run_uuid: 74c65de399d14063ae9558489944de7a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711463878537
+status: 3
+tags: []
+user_id: filippo

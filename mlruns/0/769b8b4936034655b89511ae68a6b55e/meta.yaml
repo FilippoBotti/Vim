@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/769b8b4936034655b89511ae68a6b55e/artifacts
+end_time: 1711446821471
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 769b8b4936034655b89511ae68a6b55e
+run_name: overjoyed-midge-284
+run_uuid: 769b8b4936034655b89511ae68a6b55e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711446817437
+status: 3
+tags: []
+user_id: filippo

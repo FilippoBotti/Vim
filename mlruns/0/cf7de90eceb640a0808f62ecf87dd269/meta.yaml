@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/cf7de90eceb640a0808f62ecf87dd269/artifacts
+end_time: 1711043871022
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: cf7de90eceb640a0808f62ecf87dd269
+run_name: blushing-quail-36
+run_uuid: cf7de90eceb640a0808f62ecf87dd269
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711043865483
+status: 3
+tags: []
+user_id: filippo

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/b4e5feaf3dba4371b8d48c3d7538080a/artifacts
+end_time: 1710965928233
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b4e5feaf3dba4371b8d48c3d7538080a
+run_name: clumsy-asp-705
+run_uuid: b4e5feaf3dba4371b8d48c3d7538080a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710965928048
+status: 3
+tags: []
+user_id: filippo

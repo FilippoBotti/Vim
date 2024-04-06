@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/f014af2da7f94e95b90d24ef27fdc203/artifacts
+end_time: 1711446435726
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f014af2da7f94e95b90d24ef27fdc203
+run_name: luxuriant-fowl-217
+run_uuid: f014af2da7f94e95b90d24ef27fdc203
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711446432308
+status: 3
+tags: []
+user_id: filippo

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/1007b2760e0b4ef996585e60fbfc173c/artifacts
+end_time: 1711101106253
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1007b2760e0b4ef996585e60fbfc173c
+run_name: learned-wasp-167
+run_uuid: 1007b2760e0b4ef996585e60fbfc173c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711101101999
+status: 3
+tags: []
+user_id: filippo

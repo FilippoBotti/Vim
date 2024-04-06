@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/a572894140f74d9381deb53b5b1d9268/artifacts
+end_time: 1711284521314
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a572894140f74d9381deb53b5b1d9268
+run_name: likeable-colt-722
+run_uuid: a572894140f74d9381deb53b5b1d9268
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711284518442
+status: 3
+tags: []
+user_id: filippo

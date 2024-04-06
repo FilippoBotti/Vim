@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/59684c56b5fb4f55a9a884e092c9c6a1/artifacts
+end_time: 1711448548992
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 59684c56b5fb4f55a9a884e092c9c6a1
+run_name: selective-gnat-821
+run_uuid: 59684c56b5fb4f55a9a884e092c9c6a1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711448544960
+status: 3
+tags: []
+user_id: filippo

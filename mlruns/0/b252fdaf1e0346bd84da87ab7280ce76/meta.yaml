@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/b252fdaf1e0346bd84da87ab7280ce76/artifacts
+end_time: 1711453741062
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b252fdaf1e0346bd84da87ab7280ce76
+run_name: placid-bee-455
+run_uuid: b252fdaf1e0346bd84da87ab7280ce76
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711453736881
+status: 3
+tags: []
+user_id: filippo

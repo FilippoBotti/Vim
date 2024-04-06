@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/90a0cb12f06c40b5a2887055be9853fa/artifacts
+end_time: 1711449010920
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 90a0cb12f06c40b5a2887055be9853fa
+run_name: nosy-gnat-79
+run_uuid: 90a0cb12f06c40b5a2887055be9853fa
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711449005858
+status: 3
+tags: []
+user_id: filippo

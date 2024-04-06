@@ -18,16 +18,19 @@ from timm.optim import create_optimizer
 from timm.utils import NativeScaler, get_state_dict, ModelEma
 
 from datasets import build_dataset
-from engine import train_one_epoch, evaluate
+from engine import train_one_epoch, evaluate, visualize_attention, train_one_epoch_style_transfer,evaluate_cross_attention
 from losses import DistillationLoss
+from loss import VGGLoss
 from samplers import RASampler
 from augment import new_data_aug_generator
 
 from contextlib import suppress
 
-import models_mamba
+import cross_vim_models
 
 import utils
+
+import torch.nn as nn
 
 # log about
 import mlflow
@@ -35,10 +38,18 @@ import mlflow
 
 def get_args_parser():
     parser = argparse.ArgumentParser('DeiT training and evaluation script', add_help=False)
+    parser.add_argument('--vgg', type=str, default='./experiments/vgg_normalised.pth')  #run the train.py, please download the pretrained vgg checkpoint
+    parser.add_argument('--style_weight', type=float, default=10.0)
+    parser.add_argument('--content_weight', type=float, default=7.0)
     parser.add_argument('--batch-size', default=64, type=int)
     parser.add_argument('--epochs', default=300, type=int)
     parser.add_argument('--bce-loss', action='store_true')
     parser.add_argument('--unscale-lr', action='store_true')
+    parser.add_argument('--style_transfer', action='store_true')
+    
+    parser.add_argument('--visualize_attn', action='store_true')
+
+    parser.add_argument('--gpu', default=0, type=int)
 
     # Model parameters
     parser.add_argument('--model', default='deit_base_patch16_224', type=str, metavar='MODEL',
@@ -160,7 +171,7 @@ def get_args_parser():
     # Dataset parameters
     parser.add_argument('--data-path', default='/datasets01/imagenet_full_size/061417/', type=str,
                         help='dataset path')
-    parser.add_argument('--data-set', default='IMNET', choices=['CIFAR', 'IMNET', 'INAT', 'INAT19'],
+    parser.add_argument('--data-set', default='IMNET', choices=['CIFAR', 'IMNET', 'INAT', 'INAT19', 'EDGES2SHOES', 'CelebA-HQ'],
                         type=str, help='Image Net dataset path')
     parser.add_argument('--inat-category', default='name',
                         choices=['kingdom', 'phylum', 'class', 'order', 'supercategory', 'family', 'genus', 'name'],
@@ -177,7 +188,7 @@ def get_args_parser():
     parser.add_argument('--eval', action='store_true', help='Perform evaluation only')
     parser.add_argument('--eval-crop-ratio', default=0.875, type=float, help="Crop ratio for evaluation")
     parser.add_argument('--dist-eval', action='store_true', default=False, help='Enabling distributed evaluation')
-    parser.add_argument('--num_workers', default=10, type=int)
+    parser.add_argument('--num_workers', default=4, type=int)
     parser.add_argument('--pin-mem', action='store_true',
                         help='Pin CPU memory in DataLoader for more efficient (sometimes) transfer to GPU.')
     parser.add_argument('--no-pin-mem', action='store_false', dest='pin_mem',
@@ -246,7 +257,6 @@ def main(args):
 
     dataset_train, args.nb_classes = build_dataset(is_train=True, args=args)
     dataset_val, _ = build_dataset(is_train=False, args=args)
-
     if args.distributed:
         num_tasks = utils.get_world_size()
         global_rank = utils.get_rank()
@@ -283,7 +293,7 @@ def main(args):
 
     data_loader_val = torch.utils.data.DataLoader(
         dataset_val, sampler=sampler_val,
-        batch_size=int(1.5 * args.batch_size),
+        batch_size=args.batch_size,
         num_workers=args.num_workers,
         pin_memory=args.pin_mem,
         drop_last=False
@@ -298,15 +308,27 @@ def main(args):
             label_smoothing=args.smoothing, num_classes=args.nb_classes)
 
     print(f"Creating model: {args.model}")
-    model = create_model(
-        args.model,
-        pretrained=False,
-        num_classes=args.nb_classes,
-        drop_rate=args.drop,
-        drop_path_rate=args.drop_path,
-        drop_block_rate=None,
-        img_size=args.input_size
-    )
+    if args.style_transfer:
+        print("Style transfer")
+        model = create_model(
+            args.model,
+            pretrained=False,
+            num_classes=args.nb_classes,
+            drop_rate=args.drop,
+            drop_path_rate=args.drop_path,
+            drop_block_rate=None,
+            img_size=args.input_size
+        )
+    else:
+        model = create_model(
+            args.model,
+            pretrained=False,
+            num_classes=args.nb_classes,
+            drop_rate=args.drop,
+            drop_path_rate=args.drop_path,
+            drop_block_rate=None,
+            img_size=args.input_size
+        )
 
                     
     if args.finetune:
@@ -324,24 +346,25 @@ def main(args):
                 del checkpoint_model[k]
 
         # interpolate position embedding
-        pos_embed_checkpoint = checkpoint_model['pos_embed']
-        embedding_size = pos_embed_checkpoint.shape[-1]
-        num_patches = model.patch_embed.num_patches
-        num_extra_tokens = model.pos_embed.shape[-2] - num_patches
-        # height (== width) for the checkpoint position embedding
-        orig_size = int((pos_embed_checkpoint.shape[-2] - num_extra_tokens) ** 0.5)
-        # height (== width) for the new position embedding
-        new_size = int(num_patches ** 0.5)
-        # class_token and dist_token are kept unchanged
-        extra_tokens = pos_embed_checkpoint[:, :num_extra_tokens]
-        # only the position tokens are interpolated
-        pos_tokens = pos_embed_checkpoint[:, num_extra_tokens:]
-        pos_tokens = pos_tokens.reshape(-1, orig_size, orig_size, embedding_size).permute(0, 3, 1, 2)
-        pos_tokens = torch.nn.functional.interpolate(
-            pos_tokens, size=(new_size, new_size), mode='bicubic', align_corners=False)
-        pos_tokens = pos_tokens.permute(0, 2, 3, 1).flatten(1, 2)
-        new_pos_embed = torch.cat((extra_tokens, pos_tokens), dim=1)
-        checkpoint_model['pos_embed'] = new_pos_embed
+        if not args.style_transfer:
+            pos_embed_checkpoint = checkpoint_model['pos_embed']
+            embedding_size = pos_embed_checkpoint.shape[-1]
+            num_patches = model.patch_embed.num_patches
+            num_extra_tokens = model.pos_embed.shape[-2] - num_patches
+            # height (== width) for the checkpoint position embedding
+            orig_size = int((pos_embed_checkpoint.shape[-2] - num_extra_tokens) ** 0.5)
+            # height (== width) for the new position embedding
+            new_size = int(num_patches ** 0.5)
+            # class_token and dist_token are kept unchanged
+            extra_tokens = pos_embed_checkpoint[:, :num_extra_tokens]
+            # only the position tokens are interpolated
+            pos_tokens = pos_embed_checkpoint[:, num_extra_tokens:]
+            pos_tokens = pos_tokens.reshape(-1, orig_size, orig_size, embedding_size).permute(0, 3, 1, 2)
+            pos_tokens = torch.nn.functional.interpolate(
+                pos_tokens, size=(new_size, new_size), mode='bicubic', align_corners=False)
+            pos_tokens = pos_tokens.permute(0, 2, 3, 1).flatten(1, 2)
+            new_pos_embed = torch.cat((extra_tokens, pos_tokens), dim=1)
+            checkpoint_model['pos_embed'] = new_pos_embed
 
         model.load_state_dict(checkpoint_model, strict=False)
         
@@ -457,33 +480,114 @@ def main(args):
                 loss_scaler = 'none'
         lr_scheduler.step(args.start_epoch)
         
-    if args.eval:
-        test_stats = evaluate(data_loader_val, model, device, amp_autocast)
-        print(f"Accuracy of the network on the {len(dataset_val)} test images: {test_stats['acc1']:.1f}%")
+    if args.style_transfer:
+        criterion = nn.MSELoss()
+    if args.eval and args.visualize_attn:
+        output = visualize_attention(data_loader_val, model, device, amp_autocast)
+        
         return
+     
+    if args.eval :
+        if args.style_transfer:
+            evaluate_cross_attention(data_loader_val, model, device, amp_autocast, args)
+        else:
+            test_stats = evaluate(data_loader_val, model, device, amp_autocast)
+            print(f"Accuracy of the network on the {len(dataset_val)} test images: {test_stats['acc1']:.1f}%")
+        return
+
+   
+        
     
     # log about
     if args.local_rank == 0 and args.gpu == 0:
         mlflow.log_param("n_parameters", n_parameters)
 
+    vgg = nn.Sequential(
+    nn.Conv2d(3, 3, (1, 1)),
+    nn.ReflectionPad2d((1, 1, 1, 1)),
+    nn.Conv2d(3, 64, (3, 3)),
+    nn.ReLU(),  # relu1-1
+    nn.ReflectionPad2d((1, 1, 1, 1)),
+    nn.Conv2d(64, 64, (3, 3)),
+    nn.ReLU(),  # relu1-2
+    nn.MaxPool2d((2, 2), (2, 2), (0, 0), ceil_mode=True),
+    nn.ReflectionPad2d((1, 1, 1, 1)),
+    nn.Conv2d(64, 128, (3, 3)),
+    nn.ReLU(),  # relu2-1
+    nn.ReflectionPad2d((1, 1, 1, 1)),
+    nn.Conv2d(128, 128, (3, 3)),
+    nn.ReLU(),  # relu2-2
+    nn.MaxPool2d((2, 2), (2, 2), (0, 0), ceil_mode=True),
+    nn.ReflectionPad2d((1, 1, 1, 1)),
+    nn.Conv2d(128, 256, (3, 3)),
+    nn.ReLU(),  # relu3-1
+    nn.ReflectionPad2d((1, 1, 1, 1)),
+    nn.Conv2d(256, 256, (3, 3)),
+    nn.ReLU(),  # relu3-2
+    nn.ReflectionPad2d((1, 1, 1, 1)),
+    nn.Conv2d(256, 256, (3, 3)),
+    nn.ReLU(),  # relu3-3
+    nn.ReflectionPad2d((1, 1, 1, 1)),
+    nn.Conv2d(256, 256, (3, 3)),
+    nn.ReLU(),  # relu3-4
+    nn.MaxPool2d((2, 2), (2, 2), (0, 0), ceil_mode=True),
+    nn.ReflectionPad2d((1, 1, 1, 1)),
+    nn.Conv2d(256, 512, (3, 3)),
+    nn.ReLU(),  # relu4-1, this is the last layer used
+    nn.ReflectionPad2d((1, 1, 1, 1)),
+    nn.Conv2d(512, 512, (3, 3)),
+    nn.ReLU(),  # relu4-2
+    nn.ReflectionPad2d((1, 1, 1, 1)),
+    nn.Conv2d(512, 512, (3, 3)),
+    nn.ReLU(),  # relu4-3
+    nn.ReflectionPad2d((1, 1, 1, 1)),
+    nn.Conv2d(512, 512, (3, 3)),
+    nn.ReLU(),  # relu4-4
+    nn.MaxPool2d((2, 2), (2, 2), (0, 0), ceil_mode=True),
+    nn.ReflectionPad2d((1, 1, 1, 1)),
+    nn.Conv2d(512, 512, (3, 3)),
+    nn.ReLU(),  # relu5-1
+    nn.ReflectionPad2d((1, 1, 1, 1)),
+    nn.Conv2d(512, 512, (3, 3)),
+    nn.ReLU(),  # relu5-2
+    nn.ReflectionPad2d((1, 1, 1, 1)),
+    nn.Conv2d(512, 512, (3, 3)),
+    nn.ReLU(),  # relu5-3
+    nn.ReflectionPad2d((1, 1, 1, 1)),
+    nn.Conv2d(512, 512, (3, 3)),
+    nn.ReLU()  # relu5-4
+)
+    vgg.load_state_dict(torch.load(args.vgg))
+    vgg = nn.Sequential(*list(vgg.children())[:44])
+    vgg_encoder = VGGLoss(vgg, args)
     print(f"Start training for {args.epochs} epochs")
     start_time = time.time()
     max_accuracy = 0.0
     for epoch in range(args.start_epoch, args.epochs):
-        if args.distributed:
-            data_loader_train.sampler.set_epoch(epoch)
+        # if args.distributed:
+        #     data_loader_train.sampler.set_epoch(epoch)
 
-        train_stats = train_one_epoch(
-            model, criterion, data_loader_train,
-            optimizer, device, epoch, loss_scaler, amp_autocast,
-            args.clip_grad, model_ema, mixup_fn,
-            set_training_mode=args.train_mode,  # keep in eval mode for deit finetuning / train mode for training and deit III finetuning
-            args=args,
-        )
+        if args.style_transfer:
+            train_stats = train_one_epoch_style_transfer(
+                model, vgg_encoder, criterion, data_loader_train,
+                optimizer, device, epoch, loss_scaler, amp_autocast,
+                args.clip_grad, model_ema, mixup_fn,
+                set_training_mode=args.train_mode,  # keep in eval mode for deit finetuning / train mode for training and deit III finetuning
+                args=args,
+            )
+        else:
+            train_stats = train_one_epoch(
+                model, criterion, data_loader_train,
+                optimizer, device, epoch, loss_scaler, amp_autocast,
+                args.clip_grad, model_ema, mixup_fn,
+                set_training_mode=args.train_mode,  # keep in eval mode for deit finetuning / train mode for training and deit III finetuning
+                args=args,
+            )
 
         lr_scheduler.step(epoch)
         if args.output_dir:
             checkpoint_paths = [output_dir / 'checkpoint.pth']
+            print("Saving checkpoints...")
             for checkpoint_path in checkpoint_paths:
                 utils.save_on_master({
                     'model': model_without_ddp.state_dict(),
@@ -495,41 +599,43 @@ def main(args):
                     'args': args,
                 }, checkpoint_path)
              
-
-        test_stats = evaluate(data_loader_val, model, device, amp_autocast)
-        print(f"Accuracy of the network on the {len(dataset_val)} test images: {test_stats['acc1']:.1f}%")
+        if args.style_transfer:
+            test_stats = evaluate_cross_attention(data_loader_val, model, device, amp_autocast, args)
+        else:
+            test_stats = evaluate(data_loader_val, model, device, amp_autocast)
+            print(f"Accuracy of the network on the {len(dataset_val)} test images: {test_stats['acc1']:.1f}%")
         
-        if max_accuracy < test_stats["acc1"]:
-            max_accuracy = test_stats["acc1"]
-            if args.output_dir:
-                checkpoint_paths = [output_dir / 'best_checkpoint.pth']
-                for checkpoint_path in checkpoint_paths:
-                    utils.save_on_master({
-                        'model': model_without_ddp.state_dict(),
-                        'optimizer': optimizer.state_dict(),
-                        'lr_scheduler': lr_scheduler.state_dict(),
+            if max_accuracy < test_stats["acc1"]:
+                max_accuracy = test_stats["acc1"]
+                if args.output_dir:
+                    checkpoint_paths = [output_dir / 'best_checkpoint.pth']
+                    for checkpoint_path in checkpoint_paths:
+                        utils.save_on_master({
+                            'model': model_without_ddp.state_dict(),
+                            'optimizer': optimizer.state_dict(),
+                            'lr_scheduler': lr_scheduler.state_dict(),
+                            'epoch': epoch,
+                            'model_ema': get_state_dict(model_ema),
+                            'scaler': loss_scaler.state_dict() if loss_scaler != 'none' else loss_scaler,
+                            'args': args,
+                        }, checkpoint_path)
+                
+            print(f'Max accuracy: {max_accuracy:.2f}%')
+
+            log_stats = {**{f'train_{k}': v for k, v in train_stats.items()},
+                        **{f'test_{k}': v for k, v in test_stats.items()},
                         'epoch': epoch,
-                        'model_ema': get_state_dict(model_ema),
-                        'scaler': loss_scaler.state_dict() if loss_scaler != 'none' else loss_scaler,
-                        'args': args,
-                    }, checkpoint_path)
+                        'n_parameters': n_parameters}
             
-        print(f'Max accuracy: {max_accuracy:.2f}%')
-
-        log_stats = {**{f'train_{k}': v for k, v in train_stats.items()},
-                     **{f'test_{k}': v for k, v in test_stats.items()},
-                     'epoch': epoch,
-                     'n_parameters': n_parameters}
-        
-        # log about
-        if args.local_rank == 0 and args.gpu == 0:
-            for key, value in log_stats.items():
-                mlflow.log_metric(key, value, log_stats['epoch'])
-        
-        
-        if args.output_dir and utils.is_main_process():
-            with (output_dir / "log.txt").open("a") as f:
-                f.write(json.dumps(log_stats) + "\n")
+            # log about
+            if args.local_rank == 0 and args.gpu == 0:
+                for key, value in log_stats.items():
+                    mlflow.log_metric(key, value, log_stats['epoch'])
+            
+            
+            if args.output_dir and utils.is_main_process():
+                with (output_dir / "log.txt").open("a") as f:
+                    f.write(json.dumps(log_stats) + "\n")
 
     total_time = time.time() - start_time
     total_time_str = str(datetime.timedelta(seconds=int(total_time)))

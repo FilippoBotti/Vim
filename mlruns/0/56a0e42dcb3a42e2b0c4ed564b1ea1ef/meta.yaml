@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/56a0e42dcb3a42e2b0c4ed564b1ea1ef/artifacts
+end_time: 1711448523540
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 56a0e42dcb3a42e2b0c4ed564b1ea1ef
+run_name: glamorous-lamb-585
+run_uuid: 56a0e42dcb3a42e2b0c4ed564b1ea1ef
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711448519559
+status: 3
+tags: []
+user_id: filippo

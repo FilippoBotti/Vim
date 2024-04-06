@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/6590ad9ac9ec4994984a658e21136b1e/artifacts
+end_time: 1711379695144
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6590ad9ac9ec4994984a658e21136b1e
+run_name: cross-vim_celeba
+run_uuid: 6590ad9ac9ec4994984a658e21136b1e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711379687487
+status: 3
+tags: []
+user_id: filippo

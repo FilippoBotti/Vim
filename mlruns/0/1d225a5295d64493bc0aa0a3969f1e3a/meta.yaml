@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/1d225a5295d64493bc0aa0a3969f1e3a/artifacts
+end_time: 1711101071673
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1d225a5295d64493bc0aa0a3969f1e3a
+run_name: funny-dog-693
+run_uuid: 1d225a5295d64493bc0aa0a3969f1e3a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711101066881
+status: 3
+tags: []
+user_id: filippo

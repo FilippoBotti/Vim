@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/7a567e7349514c089043f7391a893328/artifacts
+end_time: 1711285052757
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7a567e7349514c089043f7391a893328
+run_name: melodic-bee-491
+run_uuid: 7a567e7349514c089043f7391a893328
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711285050734
+status: 3
+tags: []
+user_id: filippo

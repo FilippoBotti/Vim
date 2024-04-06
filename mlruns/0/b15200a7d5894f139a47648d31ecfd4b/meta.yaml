@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/b15200a7d5894f139a47648d31ecfd4b/artifacts
+end_time: 1711043774392
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b15200a7d5894f139a47648d31ecfd4b
+run_name: bemused-bird-996
+run_uuid: b15200a7d5894f139a47648d31ecfd4b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711043773026
+status: 3
+tags: []
+user_id: filippo

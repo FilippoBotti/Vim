@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/06b2cae49ffb4ab79a67362553156e95/artifacts
+end_time: 1711113347814
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 06b2cae49ffb4ab79a67362553156e95
+run_name: rumbling-asp-821
+run_uuid: 06b2cae49ffb4ab79a67362553156e95
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711113342174
+status: 3
+tags: []
+user_id: filippo

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/63440505e1e84069a8dd65649996135b/artifacts
+end_time: 1710965353899
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 63440505e1e84069a8dd65649996135b
+run_name: wistful-yak-384
+run_uuid: 63440505e1e84069a8dd65649996135b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710965351085
+status: 3
+tags: []
+user_id: filippo

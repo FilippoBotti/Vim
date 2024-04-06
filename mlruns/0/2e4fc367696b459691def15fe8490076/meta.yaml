@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/2e4fc367696b459691def15fe8490076/artifacts
+end_time: 1711043808665
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2e4fc367696b459691def15fe8490076
+run_name: shivering-cow-828
+run_uuid: 2e4fc367696b459691def15fe8490076
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711043805984
+status: 3
+tags: []
+user_id: filippo

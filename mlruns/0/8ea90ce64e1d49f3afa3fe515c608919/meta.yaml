@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/8ea90ce64e1d49f3afa3fe515c608919/artifacts
+end_time: 1711453890634
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 8ea90ce64e1d49f3afa3fe515c608919
+run_name: adorable-zebra-404
+run_uuid: 8ea90ce64e1d49f3afa3fe515c608919
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711453886679
+status: 3
+tags: []
+user_id: filippo

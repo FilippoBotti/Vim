@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/ab966aa6c6704ff094110f44d338a1d1/artifacts
+end_time: 1711281863731
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: ab966aa6c6704ff094110f44d338a1d1
+run_name: efficient-squid-937
+run_uuid: ab966aa6c6704ff094110f44d338a1d1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711281858904
+status: 3
+tags: []
+user_id: filippo

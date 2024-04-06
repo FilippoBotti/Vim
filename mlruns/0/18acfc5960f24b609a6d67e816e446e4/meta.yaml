@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/18acfc5960f24b609a6d67e816e446e4/artifacts
+end_time: 1711449074651
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 18acfc5960f24b609a6d67e816e446e4
+run_name: upbeat-deer-547
+run_uuid: 18acfc5960f24b609a6d67e816e446e4
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711449069640
+status: 3
+tags: []
+user_id: filippo

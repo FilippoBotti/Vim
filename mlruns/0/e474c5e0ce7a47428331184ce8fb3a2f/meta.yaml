@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/e474c5e0ce7a47428331184ce8fb3a2f/artifacts
+end_time: 1711449320428
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e474c5e0ce7a47428331184ce8fb3a2f
+run_name: industrious-fowl-183
+run_uuid: e474c5e0ce7a47428331184ce8fb3a2f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711449318301
+status: 3
+tags: []
+user_id: filippo

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/bfcd3e2dd0c0428490145b25751bb448/artifacts
+end_time: 1711463966041
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: bfcd3e2dd0c0428490145b25751bb448
+run_name: inquisitive-ram-959
+run_uuid: bfcd3e2dd0c0428490145b25751bb448
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711463961598
+status: 3
+tags: []
+user_id: filippo

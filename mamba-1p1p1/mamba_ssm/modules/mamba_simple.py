@@ -72,6 +72,8 @@ class Mamba(nn.Module):
             self.gamma = nn.Parameter(init_layer_scale * torch.ones((d_model)), requires_grad=True)
 
         self.in_proj = nn.Linear(self.d_model, self.d_inner * 2, bias=bias, **factory_kwargs)
+        # self.in_proj_img = nn.Linear(self.d_model, self.d_inner, bias=bias, **factory_kwargs)
+        # self.in_proj_style = nn.Linear(self.d_model, self.d_inner, bias=bias, **factory_kwargs)
 
         self.conv1d = nn.Conv1d(
             in_channels=self.d_inner,
@@ -172,7 +174,6 @@ class Mamba(nn.Module):
         Returns: same shape as hidden_states
         """
         batch, seqlen, dim = hidden_states.shape
-
         conv_state, ssm_state = None, None
         if inference_params is not None:
             conv_state, ssm_state = self._get_states_from_cache(inference_params, batch)
@@ -180,7 +181,10 @@ class Mamba(nn.Module):
                 # The states are updated inplace
                 out, _, _ = self.step(hidden_states, conv_state, ssm_state)
                 return out
-
+        # print(self.in_proj_img, self.in_proj_style)
+        # print((self.in_proj_img.weight @ rearrange(hidden_states, "b l d -> d (b l)")).shape)
+        # test = torch.cat((self.in_proj_img.weight @ rearrange(hidden_states, "b l d -> d (b l)"),self.in_proj_img.weight @ rearrange(hidden_states, "b l d -> d (b l)")),0)
+        # print(test.shape)
         # We do matmul and transpose BLH -> HBL at the same time
         xz = rearrange(
             self.in_proj.weight @ rearrange(hidden_states, "b l d -> d (b l)"),
@@ -193,7 +197,9 @@ class Mamba(nn.Module):
         A = -torch.exp(self.A_log.float())  # (d_inner, d_state)
         # In the backward pass we write dx and dz next to each other to avoid torch.cat
         if self.use_fast_path and inference_params is None:  # Doesn't support outputting the states
+            
             if self.bimamba_type == "v1":
+                
                 A_b = -torch.exp(self.A_b_log.float())
                 out = bimamba_inner_fn(
                     xz,

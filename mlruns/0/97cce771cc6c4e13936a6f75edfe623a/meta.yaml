@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/97cce771cc6c4e13936a6f75edfe623a/artifacts
+end_time: 1711447215681
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 97cce771cc6c4e13936a6f75edfe623a
+run_name: thoughtful-bear-645
+run_uuid: 97cce771cc6c4e13936a6f75edfe623a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711447211598
+status: 3
+tags: []
+user_id: filippo

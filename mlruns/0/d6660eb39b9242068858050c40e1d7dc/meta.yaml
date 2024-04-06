@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/d6660eb39b9242068858050c40e1d7dc/artifacts
+end_time: 1711284962120
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d6660eb39b9242068858050c40e1d7dc
+run_name: ambitious-finch-120
+run_uuid: d6660eb39b9242068858050c40e1d7dc
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711284957313
+status: 3
+tags: []
+user_id: filippo

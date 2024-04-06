@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/f3eba036487c4c938e92770baeea8163/artifacts
+end_time: 1711284437660
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f3eba036487c4c938e92770baeea8163
+run_name: welcoming-moth-791
+run_uuid: f3eba036487c4c938e92770baeea8163
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711284432075
+status: 3
+tags: []
+user_id: filippo

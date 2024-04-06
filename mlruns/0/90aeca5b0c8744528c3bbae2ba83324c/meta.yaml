@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/90aeca5b0c8744528c3bbae2ba83324c/artifacts
+end_time: 1711284624165
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 90aeca5b0c8744528c3bbae2ba83324c
+run_name: fearless-sow-1
+run_uuid: 90aeca5b0c8744528c3bbae2ba83324c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711284618589
+status: 3
+tags: []
+user_id: filippo

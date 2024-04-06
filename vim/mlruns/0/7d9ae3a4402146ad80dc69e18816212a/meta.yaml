@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/7d9ae3a4402146ad80dc69e18816212a/artifacts
+end_time: 1710964725848
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7d9ae3a4402146ad80dc69e18816212a
+run_name: honorable-wren-497
+run_uuid: 7d9ae3a4402146ad80dc69e18816212a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710964724967
+status: 3
+tags: []
+user_id: filippo

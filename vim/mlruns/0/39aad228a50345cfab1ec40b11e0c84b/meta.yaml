@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/39aad228a50345cfab1ec40b11e0c84b/artifacts
+end_time: 1710964622780
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 39aad228a50345cfab1ec40b11e0c84b
+run_name: selective-seal-783
+run_uuid: 39aad228a50345cfab1ec40b11e0c84b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710964622294
+status: 3
+tags: []
+user_id: filippo

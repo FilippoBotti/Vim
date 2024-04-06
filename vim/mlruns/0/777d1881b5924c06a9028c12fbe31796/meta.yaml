@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/777d1881b5924c06a9028c12fbe31796/artifacts
+end_time: 1710965850052
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 777d1881b5924c06a9028c12fbe31796
+run_name: bright-wasp-854
+run_uuid: 777d1881b5924c06a9028c12fbe31796
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710965847297
+status: 3
+tags: []
+user_id: filippo

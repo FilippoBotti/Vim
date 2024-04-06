@@ -9,12 +9,109 @@ from typing import Iterable, Optional
 
 import torch
 
+from timm.data.constants import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
 import timm
 from timm.data import Mixup
 from timm.utils import accuracy, ModelEma
-
+from PIL import Image
 from losses import DistillationLoss
 import utils
+import torchvision
+from torchvision import transforms
+        
+def unNormalize(img):
+    mean = torch.tensor([ 0.485, 0.456, 0.406 ], dtype=torch.float32)
+    std = torch.tensor([ 0.229, 0.224, 0.225 ], dtype=torch.float32)
+
+
+    unnormalize = transforms.Normalize((-mean / std).tolist(), (1.0 / std).tolist())
+    
+    return unnormalize(img)
+
+def train_one_epoch_style_transfer(model: torch.nn.Module, vgg_encoder, criterion: DistillationLoss,
+                    data_loader: Iterable, optimizer: torch.optim.Optimizer,
+                    device: torch.device, epoch: int, loss_scaler, amp_autocast, max_norm: float = 0,
+                    model_ema: Optional[ModelEma] = None, mixup_fn: Optional[Mixup] = None,
+                    set_training_mode=True, args = None):
+    model.train(set_training_mode)
+    metric_logger = utils.MetricLogger(delimiter="  ")
+    metric_logger.add_meter('lr', utils.SmoothedValue(window_size=1, fmt='{value:.6f}'))
+    header = 'Epoch: [{}]'.format(epoch)
+    print_freq = 10
+    # debug
+    count = 0
+    output_dir = args.output_dir
+    for samples in metric_logger.log_every(data_loader, print_freq, header):
+        # count += 1
+        # if count > 20:
+        #     break
+        img, style = samples
+        img = img.to(device, non_blocking=True)
+        style = style.to(device, non_blocking=True)
+        # if mixup_fn is not None:
+        #     samples, targets = mixup_fn(samples, targets)
+            
+        # if args.cosub:
+        #     samples = torch.cat((samples,samples),dim=0)
+            
+        # if args.bce_loss:
+        #     targets = targets.gt(0.0).type(targets.dtype)
+         
+        with amp_autocast():
+            outputs = model(img, style, if_random_cls_token_position=args.if_random_cls_token_position, if_random_token_rank=args.if_random_token_rank)
+            # outputs = model(samples)
+            loss = vgg_encoder(img, style, outputs)
+            if count < 5:
+                image = torch.cat((unNormalize(img[0]), unNormalize(style[0]), unNormalize(outputs[0])),1) 
+                torchvision.utils.save_image(image, f"{output_dir}/train_edge2style_{count}.jpg")
+                count +=1
+                
+            # if not args.cosub:
+            #     loss = criterion(samples, outputs, targets)
+            # else:
+            #     outputs = torch.split(outputs, outputs.shape[0]//2, dim=0)
+            #     loss = 0.25 * criterion(outputs[0], targets) 
+            #     loss = loss + 0.25 * criterion(outputs[1], targets) 
+            #     loss = loss + 0.25 * criterion(outputs[0], outputs[1].detach().sigmoid())
+            #     loss = loss + 0.25 * criterion(outputs[1], outputs[0].detach().sigmoid()) 
+
+        if args.if_nan2num:
+            with amp_autocast():
+                loss = torch.nan_to_num(loss)
+
+        loss_value = loss.item()
+
+        if not math.isfinite(loss_value):
+            print("Loss is {}, stopping training".format(loss_value))
+            if args.if_continue_inf:
+                optimizer.zero_grad()
+                continue
+            else:
+                sys.exit(1)
+
+        optimizer.zero_grad()
+
+        # this attribute is added by timm on one optimizer (adahessian)
+        if isinstance(loss_scaler, timm.utils.NativeScaler):
+            is_second_order = hasattr(optimizer, 'is_second_order') and optimizer.is_second_order
+            loss_scaler(loss, optimizer, clip_grad=max_norm,
+                    parameters=model.parameters(), create_graph=is_second_order)
+        else:
+            loss.backward()
+            if max_norm != None:
+                torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm)
+            optimizer.step()
+
+        torch.cuda.synchronize()
+        if model_ema is not None:
+            model_ema.update(model)
+
+        metric_logger.update(loss=loss_value)
+        metric_logger.update(lr=optimizer.param_groups[0]["lr"])
+    # gather the stats from all processes
+    metric_logger.synchronize_between_processes()
+    print("Averaged stats:", metric_logger)
+    return {k: meter.global_avg for k, meter in metric_logger.meters.items()}
 
 
 def train_one_epoch(model: torch.nn.Module, criterion: DistillationLoss,
@@ -53,6 +150,7 @@ def train_one_epoch(model: torch.nn.Module, criterion: DistillationLoss,
         with amp_autocast():
             outputs = model(samples, if_random_cls_token_position=args.if_random_cls_token_position, if_random_token_rank=args.if_random_token_rank)
             # outputs = model(samples)
+           
             if not args.cosub:
                 loss = criterion(samples, outputs, targets)
             else:
@@ -100,7 +198,6 @@ def train_one_epoch(model: torch.nn.Module, criterion: DistillationLoss,
     print("Averaged stats:", metric_logger)
     return {k: meter.global_avg for k, meter in metric_logger.meters.items()}
 
-
 @torch.no_grad()
 def evaluate(data_loader, model, device, amp_autocast):
     criterion = torch.nn.CrossEntropyLoss()
@@ -132,3 +229,78 @@ def evaluate(data_loader, model, device, amp_autocast):
           .format(top1=metric_logger.acc1, top5=metric_logger.acc5, losses=metric_logger.loss))
 
     return {k: meter.global_avg for k, meter in metric_logger.meters.items()}
+
+def evaluate_cross_attention(data_loader, model, device, amp_autocast, args):
+    
+    criterion = torch.nn.MSELoss()
+
+    metric_logger = utils.MetricLogger(delimiter="  ")
+    header = 'Test:'
+    invTrans = transforms.Compose([ transforms.Normalize(mean = [ 0., 0., 0. ],
+                                                     std = [ 0.229, 0.224, 0.225 ]),
+                                transforms.Normalize(mean = [ 0.485, 0.456, 0.406 ],
+                                                     std = [ 1., 1., 1. ]),
+                               ])
+
+    output_dir = args.output_dir
+    # switch to evaluation mode
+    model.eval()
+    for images in metric_logger.log_every(data_loader, 10, header):
+        image, style = images
+        image = image.to(device, non_blocking=True)
+        style = style.to(device, non_blocking=True)
+        # compute output
+        with amp_autocast():
+            output = model(image, style)
+            # output = torch.nan_to_num(output)
+            loss = criterion(output, style)
+            print("Loss: ", loss.item())
+            for i in range(args.batch_size):
+                img = unNormalize(image[i])
+                sty = unNormalize(style[i])
+                out = unNormalize(output[i])
+                
+                res = torch.cat((img,sty,out),1) 
+                torchvision.utils.save_image(res, f"{output_dir}/image2style_Test{i}.jpg")
+            break
+       
+
+@torch.no_grad()
+def visualize_attention(data_loader, model, device, amp_autocast):
+    criterion = torch.nn.CrossEntropyLoss()
+
+    metric_logger = utils.MetricLogger(delimiter="  ")
+    header = 'Test:'
+
+    # switch to evaluation mode
+    model.eval()
+
+    for images, target in metric_logger.log_every(data_loader, 10, header):
+        images = images.to(device, non_blocking=True)
+        target = target.to(device, non_blocking=True)
+
+        # compute output
+        with amp_autocast():
+            image  = utils.transform_for_eval('/home/filippo/datasets/tiny_imagenet/val/0/0.png').unsqueeze(0).cuda()
+            raw_image = Image.open('/home/filippo/datasets/tiny_imagenet/val/0/0.png')
+            map_raw_atten, logits = utils.generate_raw_attn(model, image)
+            map_mamba_attr, _ = utils.generate_mamba_attr(model, image)
+            map_rollout, _ = utils.generate_rollout(model, image)
+            image = image.squeeze()
+
+            raw_attn = utils.generate_visualization(utils.invTrans(image).detach().cpu(), map_raw_atten)
+            mamba_attr = utils.generate_visualization(utils.invTrans(image).detach().cpu(), map_mamba_attr)
+            rollout = utils.generate_visualization(utils.invTrans(image).detach().cpu(), map_rollout)
+            utils.print_preds(logits)
+            fig, axs = plt.subplots(1, 4, figsize=(10,10))
+            axs[0].imshow(raw_image)
+            axs[0].axis('off')
+            axs[1].imshow(raw_attn)
+            axs[1].axis('off')
+            axs[2].imshow(rollout)
+            axs[2].axis('off')
+            axs[3].imshow(mamba_attr)
+            axs[3].axis('off')
+            plt.savefig("name.png")
+            print("ghj")
+

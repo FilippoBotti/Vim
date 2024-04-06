@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/75afa7cece21468db34dff101cd1a3ad/artifacts
+end_time: 1711445688198
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 75afa7cece21468db34dff101cd1a3ad
+run_name: debonair-hen-219
+run_uuid: 75afa7cece21468db34dff101cd1a3ad
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711445682878
+status: 3
+tags: []
+user_id: filippo

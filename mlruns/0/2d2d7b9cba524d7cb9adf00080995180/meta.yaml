@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/2d2d7b9cba524d7cb9adf00080995180/artifacts
+end_time: 1711446958583
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 2d2d7b9cba524d7cb9adf00080995180
+run_name: learned-grouse-981
+run_uuid: 2d2d7b9cba524d7cb9adf00080995180
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711446954658
+status: 3
+tags: []
+user_id: filippo

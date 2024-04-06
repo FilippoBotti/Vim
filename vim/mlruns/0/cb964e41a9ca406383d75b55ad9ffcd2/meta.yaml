@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/cb964e41a9ca406383d75b55ad9ffcd2/artifacts
+end_time: 1711464392843
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: cb964e41a9ca406383d75b55ad9ffcd2
+run_name: salty-ox-511
+run_uuid: cb964e41a9ca406383d75b55ad9ffcd2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711464391004
+status: 3
+tags: []
+user_id: filippo

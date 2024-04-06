@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/f60e3a1a870c493d906930cbbb82027e/artifacts
+end_time: 1710964956029
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f60e3a1a870c493d906930cbbb82027e
+run_name: orderly-bat-1
+run_uuid: f60e3a1a870c493d906930cbbb82027e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710964955171
+status: 3
+tags: []
+user_id: filippo

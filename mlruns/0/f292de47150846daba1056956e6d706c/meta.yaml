@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/f292de47150846daba1056956e6d706c/artifacts
+end_time: 1711464014082
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f292de47150846daba1056956e6d706c
+run_name: entertaining-ape-967
+run_uuid: f292de47150846daba1056956e6d706c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711464010004
+status: 3
+tags: []
+user_id: filippo

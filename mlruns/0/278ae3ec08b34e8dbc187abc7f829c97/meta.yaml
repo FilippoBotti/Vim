@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/278ae3ec08b34e8dbc187abc7f829c97/artifacts
+end_time: 1711284451628
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 278ae3ec08b34e8dbc187abc7f829c97
+run_name: polite-colt-46
+run_uuid: 278ae3ec08b34e8dbc187abc7f829c97
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711284446108
+status: 3
+tags: []
+user_id: filippo

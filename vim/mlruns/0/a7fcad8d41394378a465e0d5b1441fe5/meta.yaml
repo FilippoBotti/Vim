@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/a7fcad8d41394378a465e0d5b1441fe5/artifacts
+end_time: 1710965965277
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a7fcad8d41394378a465e0d5b1441fe5
+run_name: spiffy-goat-190
+run_uuid: a7fcad8d41394378a465e0d5b1441fe5
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710965962514
+status: 3
+tags: []
+user_id: filippo

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/4019dd5dbdd840559aeb41b50b7c97ae/artifacts
+end_time: 1712356399883
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4019dd5dbdd840559aeb41b50b7c97ae
+run_name: vgg_loss
+run_uuid: 4019dd5dbdd840559aeb41b50b7c97ae
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1712356392750
+status: 3
+tags: []
+user_id: filippo

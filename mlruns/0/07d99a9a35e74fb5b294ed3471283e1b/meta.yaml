@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/07d99a9a35e74fb5b294ed3471283e1b/artifacts
+end_time: 1711043889045
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 07d99a9a35e74fb5b294ed3471283e1b
+run_name: dazzling-squid-350
+run_uuid: 07d99a9a35e74fb5b294ed3471283e1b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711043883328
+status: 3
+tags: []
+user_id: filippo

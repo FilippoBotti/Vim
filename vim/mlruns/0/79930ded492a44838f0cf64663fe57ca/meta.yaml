@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/79930ded492a44838f0cf64663fe57ca/artifacts
+end_time: 1710965787334
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 79930ded492a44838f0cf64663fe57ca
+run_name: funny-turtle-383
+run_uuid: 79930ded492a44838f0cf64663fe57ca
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710965784567
+status: 3
+tags: []
+user_id: filippo

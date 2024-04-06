@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/a9c29f98df244442b265bcad45dc0e8e/artifacts
+end_time: 1711453780355
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a9c29f98df244442b265bcad45dc0e8e
+run_name: calm-panda-702
+run_uuid: a9c29f98df244442b265bcad45dc0e8e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711453776281
+status: 3
+tags: []
+user_id: filippo

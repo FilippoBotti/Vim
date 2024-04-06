@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/f577c8bd0a0c4bbe9b51c2eccf3d92bd/artifacts
+end_time: 1711463914739
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f577c8bd0a0c4bbe9b51c2eccf3d92bd
+run_name: loud-sow-668
+run_uuid: f577c8bd0a0c4bbe9b51c2eccf3d92bd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711463911042
+status: 3
+tags: []
+user_id: filippo

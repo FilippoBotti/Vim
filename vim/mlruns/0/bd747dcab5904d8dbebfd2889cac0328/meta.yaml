@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/bd747dcab5904d8dbebfd2889cac0328/artifacts
+end_time: 1710967039540
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: bd747dcab5904d8dbebfd2889cac0328
+run_name: resilient-hare-416
+run_uuid: bd747dcab5904d8dbebfd2889cac0328
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710967038287
+status: 3
+tags: []
+user_id: filippo

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/4e305803defb4ff486bc1038e04884c3/artifacts
+end_time: 1711113272885
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 4e305803defb4ff486bc1038e04884c3
+run_name: bright-roo-289
+run_uuid: 4e305803defb4ff486bc1038e04884c3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711113270309
+status: 3
+tags: []
+user_id: filippo

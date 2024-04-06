@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/3ed350ae8e14449aa8b6d5d77000fc7d/artifacts
+end_time: 1712355705880
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 3ed350ae8e14449aa8b6d5d77000fc7d
+run_name: tmp
+run_uuid: 3ed350ae8e14449aa8b6d5d77000fc7d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1712355701443
+status: 3
+tags: []
+user_id: filippo

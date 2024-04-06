@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/9489275badc2458a97327e6106615e10/artifacts
+end_time: 1711462413016
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9489275badc2458a97327e6106615e10
+run_name: rumbling-trout-588
+run_uuid: 9489275badc2458a97327e6106615e10
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711462410274
+status: 3
+tags: []
+user_id: filippo

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/d0271b27b562438d9323fc65e69c968d/artifacts
+end_time: 1711448691556
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d0271b27b562438d9323fc65e69c968d
+run_name: intrigued-rat-787
+run_uuid: d0271b27b562438d9323fc65e69c968d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711448687511
+status: 3
+tags: []
+user_id: filippo

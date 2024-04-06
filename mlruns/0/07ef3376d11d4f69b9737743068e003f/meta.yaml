@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/07ef3376d11d4f69b9737743068e003f/artifacts
+end_time: 1711449094845
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 07ef3376d11d4f69b9737743068e003f
+run_name: chill-goat-976
+run_uuid: 07ef3376d11d4f69b9737743068e003f
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711449089850
+status: 3
+tags: []
+user_id: filippo

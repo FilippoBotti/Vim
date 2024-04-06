@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/9e7a8f77d2b9412387284b9ca6b06ed6/artifacts
+end_time: 1710965181258
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 9e7a8f77d2b9412387284b9ca6b06ed6
+run_name: nebulous-bass-725
+run_uuid: 9e7a8f77d2b9412387284b9ca6b06ed6
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710965180220
+status: 3
+tags: []
+user_id: filippo

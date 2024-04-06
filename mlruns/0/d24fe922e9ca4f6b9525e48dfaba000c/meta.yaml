@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/d24fe922e9ca4f6b9525e48dfaba000c/artifacts
+end_time: 1711284415504
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d24fe922e9ca4f6b9525e48dfaba000c
+run_name: masked-conch-436
+run_uuid: d24fe922e9ca4f6b9525e48dfaba000c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711284409987
+status: 3
+tags: []
+user_id: filippo

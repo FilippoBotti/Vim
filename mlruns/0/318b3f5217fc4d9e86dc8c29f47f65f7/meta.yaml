@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/318b3f5217fc4d9e86dc8c29f47f65f7/artifacts
+end_time: 1711448962639
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 318b3f5217fc4d9e86dc8c29f47f65f7
+run_name: indecisive-lark-660
+run_uuid: 318b3f5217fc4d9e86dc8c29f47f65f7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711448957517
+status: 3
+tags: []
+user_id: filippo

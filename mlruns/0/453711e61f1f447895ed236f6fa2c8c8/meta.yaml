@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/453711e61f1f447895ed236f6fa2c8c8/artifacts
+end_time: 1711113192591
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 453711e61f1f447895ed236f6fa2c8c8
+run_name: ambitious-gull-754
+run_uuid: 453711e61f1f447895ed236f6fa2c8c8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711113191572
+status: 3
+tags: []
+user_id: filippo

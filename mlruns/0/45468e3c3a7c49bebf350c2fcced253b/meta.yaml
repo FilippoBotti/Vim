@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/45468e3c3a7c49bebf350c2fcced253b/artifacts
+end_time: 1711113476110
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 45468e3c3a7c49bebf350c2fcced253b
+run_name: respected-panda-653
+run_uuid: 45468e3c3a7c49bebf350c2fcced253b
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711113469638
+status: 3
+tags: []
+user_id: filippo

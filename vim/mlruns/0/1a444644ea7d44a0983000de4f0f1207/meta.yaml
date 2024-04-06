@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/vim/mlruns/0/1a444644ea7d44a0983000de4f0f1207/artifacts
+end_time: 1710964633853
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 1a444644ea7d44a0983000de4f0f1207
+run_name: bouncy-stork-624
+run_uuid: 1a444644ea7d44a0983000de4f0f1207
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710964633298
+status: 3
+tags: []
+user_id: filippo

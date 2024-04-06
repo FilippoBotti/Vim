@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/f3f29e609d5940c68dd460018f83508e/artifacts
+end_time: 1711281738760
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: f3f29e609d5940c68dd460018f83508e
+run_name: gifted-conch-656
+run_uuid: f3f29e609d5940c68dd460018f83508e
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711281731555
+status: 3
+tags: []
+user_id: filippo

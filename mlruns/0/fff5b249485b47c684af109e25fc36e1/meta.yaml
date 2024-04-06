@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/fff5b249485b47c684af109e25fc36e1/artifacts
+end_time: 1711285227774
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: fff5b249485b47c684af109e25fc36e1
+run_name: charming-sponge-594
+run_uuid: fff5b249485b47c684af109e25fc36e1
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711285222740
+status: 3
+tags: []
+user_id: filippo

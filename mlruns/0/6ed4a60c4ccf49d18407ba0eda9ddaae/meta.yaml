@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/6ed4a60c4ccf49d18407ba0eda9ddaae/artifacts
+end_time: 1711463903071
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6ed4a60c4ccf49d18407ba0eda9ddaae
+run_name: smiling-crane-441
+run_uuid: 6ed4a60c4ccf49d18407ba0eda9ddaae
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711463899423
+status: 3
+tags: []
+user_id: filippo

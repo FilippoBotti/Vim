@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/edbee201f2454cb19b0d351c86bfa721/artifacts
+end_time: 1711446655044
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: edbee201f2454cb19b0d351c86bfa721
+run_name: gregarious-perch-314
+run_uuid: edbee201f2454cb19b0d351c86bfa721
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711446653832
+status: 3
+tags: []
+user_id: filippo

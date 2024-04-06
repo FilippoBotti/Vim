@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/c54f216f946f4dbe82bf0df39524b21c/artifacts
+end_time: 1711450377821
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: c54f216f946f4dbe82bf0df39524b21c
+run_name: gentle-hen-224
+run_uuid: c54f216f946f4dbe82bf0df39524b21c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711450373851
+status: 3
+tags: []
+user_id: filippo

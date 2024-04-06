@@ -8,8 +8,80 @@ from torchvision.datasets.folder import ImageFolder, default_loader
 
 from timm.data.constants import IMAGENET_DEFAULT_MEAN, IMAGENET_DEFAULT_STD
 from timm.data import create_transform
+from torch.utils.data import Dataset
+from PIL import Image
+from itertools import chain
+from pathlib import Path
+
+def listdir(dname):
+    fnames = list(chain(*[list(Path(dname).rglob('*.' + ext))
+                          for ext in ['png', 'jpg', 'jpeg', 'JPG']]))
+    return fnames
 
 
+class CelebaDataset(Dataset):
+    def __init__(self, root, mask_dir, img_size, transform=None):
+        self.images, self.masks = self._make_dataset(root, mask_dir)
+        self.transform = transform
+        self.img_size = img_size
+
+    def _make_dataset(self, root, root_mask_dir):
+        fnames, masks = [], []
+        cls_fnames = listdir(root)
+        mask_fnames = listdir(root_mask_dir)
+
+        cls_fnames.sort()
+        mask_fnames.sort()
+        fnames += cls_fnames
+        masks += mask_fnames
+        return list(fnames), list(masks)
+
+    def __getitem__(self, index):
+        fname = self.images[index]
+        mask_fname = self.masks[index]
+        img = Image.open(fname).convert('RGB')
+        mask = Image.open(mask_fname).convert('RGB')
+        if self.transform != None:
+            img = self.transform(img)
+            mask = self.transform(mask)
+        return img, mask
+
+    def __len__(self):
+        return len(self.images)
+    
+class Edges2Shoes(Dataset):
+    def __init__(self, root, img_size, transform=None):
+        self.images = self._make_dataset(root)
+        self.transform = transform
+        self.img_size = img_size
+
+    def _make_dataset(self, dir):
+        images = []
+        for fname in os.listdir(dir):
+            path = os.path.join(dir, fname)
+            images.append(path)
+        return images
+
+    def __getitem__(self, index):
+        # read a image given a random integer index
+        coupled_images = self.images[index]
+        
+        AB = Image.open(coupled_images).convert('RGB')
+        # split AB image into A and B
+        w, h = AB.size
+        w2 = int(w / 2)
+        A = AB.crop((0, 0, w2, h))
+        B = AB.crop((w2, 0, w, h))
+
+        # apply the same transform to both A and B
+        edge = self.transform(A)
+        shoes = self.transform(B)
+
+        return edge, shoes
+
+    def __len__(self):
+        return len(self.images)
+    
 class INatDataset(ImageFolder):
     def __init__(self, root, train=True, year=2018, transform=None, target_transform=None,
                  category='name', loader=default_loader):
@@ -54,8 +126,11 @@ class INatDataset(ImageFolder):
 
 
 def build_dataset(is_train, args):
-    transform = build_transform(is_train, args)
-
+    if args.data_set in ['EDGES2SHOES', 'CelebA-HQ']:
+        transform = build_transform(False, args)
+    else:
+        transform = build_transform(is_train, args)
+        
     if args.data_set == 'CIFAR':
         dataset = datasets.CIFAR100(args.data_path, train=is_train, transform=transform)
         nb_classes = 100
@@ -71,7 +146,16 @@ def build_dataset(is_train, args):
         dataset = INatDataset(args.data_path, train=is_train, year=2019,
                               category=args.inat_category, transform=transform)
         nb_classes = dataset.nb_classes
-
+    elif args.data_set == 'EDGES2SHOES':
+        root = os.path.join(args.data_path, 'train' if is_train else ('val' if args.eval else 'val'))
+        dataset = Edges2Shoes(root, img_size=256, transform=transform)
+        nb_classes = 0
+    elif args.data_set == 'CelebA-HQ':
+        root = os.path.join(args.data_path, 'train' if is_train else ('val' if args.eval else 'val'))
+        images_root = os.path.join(root, "A")
+        masks_root = os.path.join(root, "B")
+        dataset = CelebaDataset(images_root, masks_root, img_size=256, transform=transform)
+        nb_classes = 0
     return dataset, nb_classes
 
 
@@ -98,7 +182,10 @@ def build_transform(is_train, args):
 
     t = []
     if resize_im:
-        size = int(args.input_size / args.eval_crop_ratio)
+        if args.data_set in ['EGDES2SHOES', 'CelebA-HQ']:
+            size = args.input_size
+        else:
+            size = int(args.input_size / args.eval_crop_ratio)
         t.append(
             transforms.Resize(size, interpolation=3),  # to maintain same ratio w.r.t. 224 images
         )

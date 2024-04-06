@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/18dafa6336ba45c58de83392556d95e8/artifacts
+end_time: 1711102577770
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 18dafa6336ba45c58de83392556d95e8
+run_name: gaudy-donkey-404
+run_uuid: 18dafa6336ba45c58de83392556d95e8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711102570922
+status: 3
+tags: []
+user_id: filippo

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/6fa6dec52c44453186da587b27ac2e53/artifacts
+end_time: 1711449203879
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6fa6dec52c44453186da587b27ac2e53
+run_name: zealous-hound-737
+run_uuid: 6fa6dec52c44453186da587b27ac2e53
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711449199378
+status: 3
+tags: []
+user_id: filippo

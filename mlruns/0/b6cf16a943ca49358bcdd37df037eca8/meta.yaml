@@ -1,0 +1,15 @@
+artifact_uri: file:///home/filippo/projects/Vim/mlruns/0/b6cf16a943ca49358bcdd37df037eca8/artifacts
+end_time: 1711281808668
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: b6cf16a943ca49358bcdd37df037eca8
+run_name: thoughtful-pug-292
+run_uuid: b6cf16a943ca49358bcdd37df037eca8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1711281803942
+status: 3
+tags: []
+user_id: filippo
