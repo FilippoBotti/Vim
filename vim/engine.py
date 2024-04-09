@@ -60,7 +60,7 @@ def train_one_epoch_style_transfer(model: torch.nn.Module, vgg_encoder, criterio
         with amp_autocast():
             outputs = model(img, style, if_random_cls_token_position=args.if_random_cls_token_position, if_random_token_rank=args.if_random_token_rank)
             # outputs = model(samples)
-            loss = vgg_encoder(img, style, outputs)
+            loss = criterion(style, outputs)
             if count < 5:
                 image = torch.cat((unNormalize(img[0]), unNormalize(style[0]), unNormalize(outputs[0])),1) 
                 torchvision.utils.save_image(image, f"{output_dir}/train_edge2style_{count}.jpg")

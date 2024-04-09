@@ -53,8 +53,9 @@ class Mamba(nn.Module):
         bimamba_type="none",
         if_devide_out=False,
         init_layer_scale=None,
-        style_dim=512,
-        style_embed_dim=4096
+        style_dim=256,
+        style_embed_dim=4096,
+        batch_size=16
     ):
         factory_kwargs = {"device": device, "dtype": dtype}
         super().__init__()
@@ -73,15 +74,24 @@ class Mamba(nn.Module):
         self.init_layer_scale = init_layer_scale
         if init_layer_scale is not None:
             self.gamma = nn.Parameter(init_layer_scale * torch.ones((d_model)), requires_grad=True)
-
         self.in_proj = nn.Linear(self.d_model, self.d_inner * 2, bias=bias, **factory_kwargs)
         self.in_proj_img = nn.Linear(self.d_model, self.d_inner, bias=bias, **factory_kwargs)
-        self.in_proj_style_f = nn.Linear(self.d_model, self.d_inner, bias=bias, **factory_kwargs)
-        self.in_proj_style_2_f = nn.Linear(4096, 80, bias=bias, **factory_kwargs)
-        self.in_proj_style_b = nn.Linear(self.d_model, self.d_inner, bias=bias, **factory_kwargs)
-        self.in_proj_style_2_b = nn.Linear(4096, 80, bias=bias, **factory_kwargs)
+        self.in_proj_style_f = nn.Linear(768, self.d_inner, bias=bias, **factory_kwargs)
+        #self.in_proj_style_2_f = nn.Linear(batch_size * self.style_dim, self.dt_rank, bias=bias, **factory_kwargs)
+        self.in_proj_style_b = nn.Linear(self.d_inner, batch_size * self.style_dim, bias=bias, **factory_kwargs)
+        #self.in_proj_style_2_b = nn.Linear(batch_size * self.style_dim, self.dt_rank, bias=bias, **factory_kwargs)
 
         self.conv1d = nn.Conv1d(
+            in_channels=self.d_inner,
+            out_channels=self.d_inner,
+            bias=conv_bias,
+            kernel_size=d_conv,
+            groups=self.d_inner,
+            padding=d_conv - 1,
+            **factory_kwargs,
+        )
+        
+        self.conv1d_style_f = nn.Conv1d(
             in_channels=self.d_inner,
             out_channels=self.d_inner,
             bias=conv_bias,
@@ -94,9 +104,12 @@ class Mamba(nn.Module):
         self.activation = "silu"
         self.act = nn.SiLU()
 
-        #FIX: dimension * 2 not needed
         self.x_proj = nn.Linear(
-            self.d_inner, self.dt_rank + self.d_state * 2, bias=False, **factory_kwargs
+            self.d_inner, self.d_state, bias=False, **factory_kwargs
+        )
+        
+        self.s_proj = nn.Linear(
+            self.d_inner, self.dt_rank + self.d_state, bias=False, **factory_kwargs
         )
         self.dt_proj = nn.Linear(self.dt_rank, self.d_inner, bias=True, **factory_kwargs)
 
@@ -165,9 +178,21 @@ class Mamba(nn.Module):
                 **factory_kwargs,
             )
             
-            #FIX: dimension * 2 not needed
+            self.conv1d_style_b = nn.Conv1d(
+                in_channels=self.d_inner,
+                out_channels=self.d_inner,
+                bias=conv_bias,
+                kernel_size=d_conv,
+                groups=self.d_inner,
+                padding=d_conv - 1,
+                **factory_kwargs,
+            )
+            
             self.x_proj_b = nn.Linear(
-                self.d_inner, self.dt_rank + self.d_state * 2, bias=False, **factory_kwargs
+                self.d_inner, self.d_state, bias=False, **factory_kwargs
+            )
+            self.s_proj_b = nn.Linear(
+                self.d_inner, self.dt_rank + self.d_state, bias=False, **factory_kwargs
             )
             self.dt_proj_b = nn.Linear(self.dt_rank, self.d_inner, bias=True, **factory_kwargs)
 
@@ -181,11 +206,12 @@ class Mamba(nn.Module):
         hidden_states: (B, L, D)
         Returns: same shape as hidden_states
         """
-        first_proj = rearrange(self.in_proj_style_f.weight @ rearrange(style, "b l d -> d (b l)"), 'b d -> d b')
-        forward_weight = self.in_proj_style_2_f.weight @ first_proj
-        first_proj = rearrange(self.in_proj_style_b.weight @ rearrange(style, "b l d -> d (b l)"), 'b d -> d b')
-        backward_weight = self.in_proj_style_2_b.weight @ first_proj
+        # first_proj = rearrange(self.in_proj_style_f.weight @ rearrange(style, "b l d -> d (b l)"), 'b d -> d b')
+        # delta_forward_weight = rearrange(self.in_proj_style_2_f.weight @ first_proj, 'b d -> d b')
+        # first_proj = rearrange(self.in_proj_style_b.weight @ rearrange(style, "b l d -> d (b l)"), 'b d -> d b')
+        # delta_backward_weight = rearrange(self.in_proj_style_2_b.weight @ first_proj, 'b d -> d b')
         
+        style = rearrange(self.in_proj_style_f(style), 'b s d -> b d s')
         batch, seqlen, dim = hidden_states.shape
         conv_state, ssm_state = None, None
         if inference_params is not None:
@@ -237,11 +263,16 @@ class Mamba(nn.Module):
                 A_b = -torch.exp(self.A_b_log.float())
                 out = mamba_inner_fn_no_out_proj(
                     xz,
+                    style,
                     self.conv1d.weight,
                     self.conv1d.bias,
-                    #self.x_proj.weight,
-                    forward_weight,
+                    self.s_proj.weight,
+                    self.conv1d_style_f.weight,
+                    self.conv1d_style_f.bias,
+                    self.x_proj.weight,
+                    #forward_weight,
                     self.dt_proj.weight,
+                    #delta_forward_weight,
                     A,
                     None,  # input-dependent B
                     C,  # input-dependent C
@@ -251,10 +282,14 @@ class Mamba(nn.Module):
                 )
                 out_b = mamba_inner_fn_no_out_proj(
                     xz.flip([-1]),
+                    style.flip([-1]),
                     self.conv1d_b.weight,
                     self.conv1d_b.bias,
-                    #self.x_proj_b.weight,
-                    backward_weight,
+                    self.s_proj_b.weight,
+                    self.conv1d_style_b.weight,
+                    self.conv1d_style_b.bias,
+                    self.x_proj_b.weight,
+                    #delta_backward_weight,
                     self.dt_proj_b.weight,
                     A_b,
                     None,

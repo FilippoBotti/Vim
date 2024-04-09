@@ -37,6 +37,6 @@ class VGGLoss(nn.Module):
         loss_c = self.calc_content_loss(normal(out_feats), normal(content_feats))
         loss_s = self.calc_style_loss(out_feats, style_feats)
             
-        loss = self.args.content_weight * loss_c + self.args.style_weight * loss_s
+        loss =  self.args.style_weight * loss_s
         # return Ics    #test 
         return loss
